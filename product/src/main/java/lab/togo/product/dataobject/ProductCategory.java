@@ -12,7 +12,7 @@ import java.util.Date;
 public class ProductCategory {
     @Id
     @GeneratedValue
-    private Integer category_id;
+    private Integer categoryId;
 
     private Integer categoryType;
 

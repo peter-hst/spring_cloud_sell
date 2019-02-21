@@ -4,7 +4,7 @@ create table  `PRODUCT_CATEGORY`
        `CATEGORY_ID`     INT auto_increment primary key not null comment '唯一标识',
        `CREATE_TIME`     DATETIME comment '创建时间',
        `UPDATE_TIME`     DATETIME comment '修改时间',
-       `CATEGOTY_TYPE`   INT comment '类目类型',
+       `CATEGORY_TYPE`   INT comment '类目类型',
        `CATEGORY_NAME`   VARCHAR(64) comment '类目名称'
 );
 alter table `PRODUCT_CATEGORY` comment= '商品类目';
