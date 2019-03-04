@@ -1,6 +1,5 @@
 package lab.togo.product.controller;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
 import lab.togo.product.dataobject.ProductCategory;
 import lab.togo.product.dataobject.ProductInfo;
 import lab.togo.product.service.CategoryService;
@@ -10,9 +9,7 @@ import lab.togo.product.vo.ProductVO;
 import lab.togo.product.vo.ResultVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +49,7 @@ public class ProductController {
             for (ProductInfo productInfo : list) {
                 if (productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
                     ProductInfoVO productInfoVO = new ProductInfoVO();
-                    BeanUtils.copyProperties(productInfo,productInfoVO);
+                    BeanUtils.copyProperties(productInfo, productInfoVO);
                     productInfoVOList.add(productInfoVO);
                 }
             }
@@ -65,5 +62,10 @@ public class ProductController {
         resultVO.setMsg("成功");
         resultVO.setData(productVOS);
         return resultVO;
+    }
+
+    @PostMapping("/listForOrder") //只要用了@RequestBody注解,必须用@PostMapping
+    public List<ProductInfo> listForOrder(@RequestBody List<Integer> productIdList) {
+        return productService.findListByProductIdIn(productIdList);
     }
 }

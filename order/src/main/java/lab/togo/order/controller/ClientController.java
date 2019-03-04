@@ -1,5 +1,7 @@
 package lab.togo.order.controller;
 
+import lab.togo.order.client.ProductClient;
+import lab.togo.order.dataobject.ProductInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -7,6 +9,9 @@ import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -17,6 +22,9 @@ public class ClientController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private ProductClient productClient;
 
     @GetMapping("/getProductMsg")
     public String getProductMsg() {
@@ -36,5 +44,20 @@ public class ClientController {
         log.info("response3={}", response);
         return response;
 
+    }
+
+    //    5-5 使用Feign通讯
+    @GetMapping("/getProductClientMsg")
+    public String getProductClientMsg() {
+        String response = productClient.productClient();
+        log.info("getProductClientMsg: {}", response);
+        return response;
+    }
+
+    @GetMapping("/getProductList")
+    public List<ProductInfo> getProductList() {
+        List<ProductInfo> productInfoList = productClient.listForOrder(Arrays.asList(1, 3));
+        log.info("response={}", productInfoList);
+        return productInfoList;
     }
 }

@@ -15,3 +15,8 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 server:
   port: 8081
+# 格式: 应用名称.ribbon.NFLoadBalancerRuleClassName 调整Ribbon默认的轮询策略
+#PRODUCT:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+

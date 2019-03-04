@@ -1,4 +1,4 @@
-package lab.togo.product.dataobject;
+package lab.togo.order.dataobject;
 
 import lombok.Data;
 

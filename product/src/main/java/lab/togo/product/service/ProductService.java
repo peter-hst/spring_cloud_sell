@@ -11,4 +11,11 @@ public interface ProductService {
      * @return
      */
     List<ProductInfo> findUpAll();
+
+    /**
+     * 根据ID list查询商品信息列表
+     * @param list
+     * @return
+     */
+    List<ProductInfo> findListByProductIdIn(List<Integer> list);
 }
