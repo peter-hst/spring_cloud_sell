@@ -2,6 +2,7 @@ package lab.togo.order.controller;
 
 import lab.togo.order.client.ProductClient;
 import lab.togo.order.dataobject.ProductInfo;
+import lab.togo.order.dto.CartDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -60,4 +61,11 @@ public class ClientController {
         log.info("response={}", productInfoList);
         return productInfoList;
     }
+
+    @GetMapping("/productDecreaseStock")
+    public String productDecreaseStock(){
+     productClient.decreaseStock(Arrays.asList(new CartDTO(2,1)));
+     return "ok";
+    }
+
 }

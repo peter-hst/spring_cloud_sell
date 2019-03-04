@@ -2,6 +2,7 @@ package lab.togo.product.controller;
 
 import lab.togo.product.dataobject.ProductCategory;
 import lab.togo.product.dataobject.ProductInfo;
+import lab.togo.product.dto.CartDTO;
 import lab.togo.product.service.CategoryService;
 import lab.togo.product.service.ProductService;
 import lab.togo.product.vo.ProductInfoVO;
@@ -68,4 +69,10 @@ public class ProductController {
     public List<ProductInfo> listForOrder(@RequestBody List<Integer> productIdList) {
         return productService.findListByProductIdIn(productIdList);
     }
+
+    @PostMapping("/decreaseStock")
+    public void decreaseStock(@RequestBody List<CartDTO> cartDTOList){
+        productService.decreaseStock(cartDTOList);
+    }
+
 }

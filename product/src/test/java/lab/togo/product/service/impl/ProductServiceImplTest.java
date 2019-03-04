@@ -2,6 +2,7 @@ package lab.togo.product.service.impl;
 
 import lab.togo.product.ProductApplicationTests;
 import lab.togo.product.dataobject.ProductInfo;
+import lab.togo.product.dto.CartDTO;
 import lab.togo.product.service.ProductService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,7 +28,15 @@ public class ProductServiceImplTest extends ProductApplicationTests {
 
     @Test
     public void findListByProductIdIn() {
-        List<ProductInfo> list = productService.findListByProductIdIn(Arrays.asList(1,2,3));
+        List<ProductInfo> list = productService.findListByProductIdIn(Arrays.asList(1, 2, 3));
         Assert.assertTrue(list.size() > 0);
+    }
+
+    @Test
+    public void decreaseStock() {
+        CartDTO cartDTO = new CartDTO();
+        cartDTO.setProductId(2);
+        cartDTO.setProductQuantity(2);
+        productService.decreaseStock(Arrays.asList(cartDTO));
     }
 }
