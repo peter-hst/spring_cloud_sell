@@ -1,5 +1,6 @@
 package lab.togo.order.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lab.togo.order.dataobject.OrderDetail;
 import lombok.*;
 
